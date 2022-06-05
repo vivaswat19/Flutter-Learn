@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
+import '../components/button.dart';
+import '../components/input_box.dart';
+
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
+
+  void printFunc(String str) {
+    print("clicked $str");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,57 +28,36 @@ class LoginPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            TextFormField(
-              initialValue: "",
-              enableSuggestions: true,
-              decoration: const InputDecoration(
-                  hintText: "Enter Username",
-                  label: Text(
-                    "Username",
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 21, 15, 197),
-                    ),
-                  )),
+            const InputField(
+              label: "Username",
+              hintText: "Enter Username",
             ),
             const SizedBox(height: 20),
-            TextFormField(
-              initialValue: "",
-              decoration: const InputDecoration(
-                  hintText: "Enter password",
-                  label: Text(
-                    "Password",
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 21, 15, 197),
-                    ),
-                  )),
+            const InputField(
+              label: "Password",
+              hintText: "Enter Password",
+              obscureText: true,
             ),
             const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                ElevatedButton(
-                  onPressed: (() {}),
-                  style: ElevatedButton.styleFrom(
-                    fixedSize: const Size(120, 50),
-                    primary: Color.fromARGB(255, 21, 15, 197),
-                    textStyle: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  child: const Text("Login"),
+                Button(
+                  text: "Login",
+                  primaryColor: const Color.fromARGB(255, 21, 15, 197),
+                  secondaryColor: Colors.white,
+                  callback: (val) {
+                    Navigator.pushNamed(context, "/");
+                  },
                 ),
-                ElevatedButton(
-                  onPressed: (() {}),
-                  style: ElevatedButton.styleFrom(
-                    fixedSize: const Size(120, 50),
-                    onPrimary: Color.fromARGB(255, 21, 15, 197),
-                    primary: Colors.white,
-                    textStyle: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  child: const Text("Sign Up"),
-                )
+                Button(
+                  text: "Signup",
+                  secondaryColor: const Color.fromARGB(255, 21, 15, 197),
+                  primaryColor: Colors.white,
+                  callback: (val) {
+                    Navigator.pushNamed(context, "/signup");
+                  },
+                ),
               ],
             )
           ],
